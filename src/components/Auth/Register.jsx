@@ -1,56 +1,66 @@
 import { useState } from "react";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase"; // Adjust your import
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import '../../style/Register.css'; // Import your new CSS file
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
+    
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      setLoading(false);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Add user data to Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        username,
+        email: user.email,
+        dob: "", // Add default values if needed
+        location: "",
+        city: "",
+        phone: ""
+      });
+
       alert("Registration successful!");
       navigate("/");  // Redirect to home page after successful registration
     } catch (err) {
-      setLoading(false);
       alert("Error: " + err.message);
     }
   };
 
   return (
-    <div className="register-container">
-      <div className="register-box">
-        <h2>Register</h2>
-        {loading ? (
-          <p className="loading-message">Loading...</p>
-        ) : (
-          <form onSubmit={handleRegister}>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)} 
-              placeholder="Email" 
-              required 
-            />
-            <input 
-              type="password" 
-              value={password} 
-              onChange={(e) => setPassword(e.target.value)} 
-              placeholder="Password" 
-              required 
-            />
-            <button type="submit">Register</button>
-          </form>
-        )}
-      </div>
+    <div>
+      <h2>Register</h2>
+      <form onSubmit={handleRegister}>
+        <input 
+          type="text" 
+          value={username} 
+          onChange={(e) => setUsername(e.target.value)} 
+          placeholder="Username" 
+          required 
+        />
+        <input 
+          type="email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          placeholder="Email" 
+          required 
+        />
+        <input 
+          type="password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
+          placeholder="Password" 
+          required 
+        />
+        <button type="submit">Register</button>
+      </form>
     </div>
   );
 };

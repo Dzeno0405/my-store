@@ -1,0 +1,126 @@
+/* Profile Page Styles */
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  .profile-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .profile-container input[type="text"],
+  .profile-container input[type="email"],
+  .profile-container input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+  }
+  
+  .profile-container input[type="text"]:focus,
+  .profile-container input[type="email"]:focus,
+  .profile-container input[type="date"]:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+  
+  .profile-container input::placeholder {
+    color: #888;
+    font-style: italic;
+  }
+  
+
+  .profile-container button:hover {
+    background-color: #0056b3;
+  }
+  
+  .profile-container button:focus {
+    outline: none;
+  }
+  
+  .avatar-upload {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: space-between;
+  }
+  
+  .avatar {
+    width: 100px; /* Set your desired width */
+    height: 100px; /* Set your desired height */
+    border-radius: 50%; /* Makes it a circle */
+    object-fit: cover; /* Ensures the image covers the area */
+    margin-right: 10px; /* Space between the image and the input/button */
+  }
+  
+  .change-avatar-button {
+    background-color: #ffcc00; /* Bright yellow color */
+    color: #333; /* Dark text for better contrast */
+    border: 2px solid #ff9900; /* Darker yellow border */
+    border-radius: 8px; /* Slightly more rounded corners */
+    padding: 12px 24px; /* Increased padding for better touch targets */
+    cursor: pointer;
+    font-size: 18px; /* Increased font size */
+    font-weight: bold; /* Bold text */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    margin-top: 10px; /* Add space above */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+  }
+  
+  .change-avatar-button:hover {
+    background-color: #e6b800; /* Darker yellow on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+  }
+  
+  .change-avatar-button:active {
+    transform: translateY(0); /* Reset lift effect when button is pressed */
+  }
+  
+  
+  .back-home-button {
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add space above */
+  }
+  
+  .back-home-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+
+  .update-profile-button {
+    background-color: #007bff; /* Bootstrap primary blue */
+    color: #fff; /* White text */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px; /* Add space above */
+  }
+  
+  .update-profile-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .bottom-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }

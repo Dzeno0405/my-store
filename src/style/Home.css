@@ -146,3 +146,8 @@
     font-size: 18px;
   }
   
+
+  .welcome-msg {
+    cursor: pointer; /* Changes cursor to pointer on hover */
+  }
+  

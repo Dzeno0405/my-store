@@ -71,3 +71,10 @@
   .register-link a:hover {
     text-decoration: underline;
   }
+
+  .success-message {
+    color: #28a745; /* Green color for success */
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  

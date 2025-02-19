@@ -22,12 +22,11 @@ const Home = () => {
       setUser(currentUser);
       setLoading(false); // Set loading to false after auth state is resolved
     });
-  
+
     return () => unsubscribe();
   }, [auth]);
-  
+
   if (loading) return null; // Prevent rendering navbar until auth state is ready
-  
 
   const handleLogout = async () => {
     try {
@@ -43,8 +42,8 @@ const Home = () => {
       {/* Header */}
       <header className="header">
         {/* Logo on the left */}
-        <div className="logo">
-          <img src="/logo.png" alt="Logo" />
+        <div className="logo" onClick={() => navigate("/")}>
+          <img src="/logo.png" alt="Logo" style={{ cursor: "pointer" }} />
           <h1>Dzenan's store</h1>
         </div>
 
@@ -58,12 +57,12 @@ const Home = () => {
         <nav className="nav">
           <div className="order-status">
             <span>Order Status</span>
-            <FaHeart className="icon" />
+            {/* <FaHeart className="icon" /> */}
           </div>
 
           {user ? (
             <>
-              <span className="welcome-msg">{user.email}</span>
+              <span className="welcome-msg" onClick={() => navigate("/profile")}>{user.email}</span>
               {/* SignOut Button */}
               <button className="logout-btn" onClick={handleLogout}>
                 <FaSignOutAlt className="icon" /> Logout

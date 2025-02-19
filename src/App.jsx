@@ -1,28 +1,34 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";  // Header is imported here
-import Home from "./pages/Home";  // Home page
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useAuth } from "./context/AuthContext"; 
+import Header from "./components/Header";
+import Home from "./pages/Home";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
-import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
 import AddProduct from "./components/AddProduct";
 import ProductList from "./components/ProductList";
-import { AuthProvider } from "./context/AuthContext"; 
 
 const App = () => {
+  const authContext = useAuth(); 
+  if (!authContext) {
+    console.error("useAuth() is undefined! Check if AuthProvider is missing.");
+    return <p>Loading authentication...</p>; // Prevents crash
+  }
+
+  const { currentUser } = authContext;
+
   return (
-    <AuthProvider>
-      <Router>
-        <Header /> {/* This will be rendered for all pages */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/products" element={<ProductList />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
+    <Router>
+      {currentUser && <Header />} {/* Only show Header if logged in */}
+      <Routes>
+        <Route path="/" element={currentUser ? <Home /> : <Navigate to="/login" />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/profile" element={currentUser ? <Profile /> : <Navigate to="/login" />} />
+        <Route path="/add-product" element={currentUser ? <AddProduct /> : <Navigate to="/login" />} />
+        <Route path="/products" element={currentUser ? <ProductList /> : <Navigate to="/login" />} />
+      </Routes>
+    </Router>
   );
 };
 

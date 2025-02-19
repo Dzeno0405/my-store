@@ -1,27 +1,30 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { auth } from "../firebase";
+import { auth } from "../firebase";  // Ensure correct Firebase import
 import { onAuthStateChanged } from "firebase/auth";
 
-// Create AuthContext
-const AuthContext = createContext();
+const AuthContext = createContext();  // ✅ This must exist
 
-// AuthProvider to wrap your app with context
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, setUser); // Listen to auth state change
-    return () => unsubscribe(); // Cleanup listener on unmount
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user }}>
-      {children}
+    <AuthContext.Provider value={{ currentUser }}>
+      {!loading && children}  
     </AuthContext.Provider>
   );
 };
 
-// Custom hook to use auth context
+// ✅ Make sure this is exported correctly
 export const useAuth = () => {
   return useContext(AuthContext);
 };
