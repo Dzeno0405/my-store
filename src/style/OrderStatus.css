@@ -1,0 +1,90 @@
+.order-status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  
+  .order-logo {
+    width: 150px; /* Adjust size to match the navbar */
+    height: auto;
+    cursor: pointer;
+    background-color: #000;
+    border-radius: 50px;
+  }
+  
+  h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .order-input-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .order-input-container input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    width: 250px;
+  }
+  
+  .order-input-container button {
+    background-color: #ffcc00; /* Match your theme */
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  .order-input-container button:hover {
+    background-color: #e6b800;
+  }
+  
+  .order-error {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .order-details {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-details h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .order-details p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  

@@ -7,6 +7,9 @@ import Register from "./components/Auth/Register";
 import Profile from "./pages/Profile";
 import AddProduct from "./components/AddProduct";
 import ProductList from "./components/ProductList";
+import OrderStatus from "./pages/OrderStatus"; 
+import Wishlist from "./pages/Wishlist";
+import Cart from "./pages/Cart";
 
 const App = () => {
   const authContext = useAuth(); 
@@ -27,6 +30,10 @@ const App = () => {
         <Route path="/profile" element={currentUser ? <Profile /> : <Navigate to="/login" />} />
         <Route path="/add-product" element={currentUser ? <AddProduct /> : <Navigate to="/login" />} />
         <Route path="/products" element={currentUser ? <ProductList /> : <Navigate to="/login" />} />
+        <Route path="/order-status" element={currentUser ? <OrderStatus /> : <Navigate to="/login" />} /> {/* Order Status Route */}
+        <Route path="/wishlist" element={currentUser ? <Wishlist /> : <Navigate to="/login" />} />
+        <Route path="/cart" element={currentUser ? <Cart /> : <Navigate to="/login" />} />
+        
       </Routes>
     </Router>
   );
